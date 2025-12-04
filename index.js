@@ -120,6 +120,7 @@ getSpecificWeekdayDates(3, [3]).forEach((item) => {
 });
 
 const updateDB = async () => {
+  console.log(await checkUpdateDB());
   if (await checkUpdateDB()) {
     console.log("start update db");
     readFile(specDB)
@@ -145,9 +146,7 @@ const updateDB = async () => {
 
   setTimeout(updateDB, 43200000);
 };
-
 updateDB();
-
 const getService = async (param) => {
   if (!Object.keys(param).length) {
     return readFile(serviceDB).then((data) => JSON.parse(data));
