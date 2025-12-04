@@ -225,6 +225,21 @@ createServer(async (req, res) => {
     return;
   }
 
+  if (req.url === "/" || req.url === "") {
+    res.statusCode = 200;
+    res.setHeader("Content-Type", "text/html; charset=utf-8");
+
+    try {
+      const indexPath = path.resolve(__dirname, "index.html");
+      const html = await readFile(indexPath, "utf-8");
+      res.end(html);
+    } catch (e) {
+      res.statusCode = 500;
+      res.end("index.html not found");
+    }
+    return;
+  }
+
   res.setHeader("Content-Type", "application/json");
 
   res.setHeader("Access-Control-Allow-Origin", "*");
