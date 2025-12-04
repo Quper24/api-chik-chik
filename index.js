@@ -146,7 +146,6 @@ const updateDB = async () => {
 
   setTimeout(updateDB, 43200000);
 };
-updateDB();
 const getService = async (param) => {
   if (!Object.keys(param).length) {
     return readFile(serviceDB).then((data) => JSON.parse(data));
@@ -318,3 +317,5 @@ createServer(async (req, res) => {
     }
   })
   .listen(PORT);
+
+// updateDB();
